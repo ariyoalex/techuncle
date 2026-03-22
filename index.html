@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="alex.png">
+    <title>Alex M. Ariyo — Techuncle Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- ════════════════════════════════════
+     DESKTOP LOCK SCREEN
+════════════════════════════════════ -->
+    <div class="lock-desktop" id="lock-desktop" style="display:none;">
+        <div class="lock-wallpaper-blur"></div>
+        <div class="lock-d-time" id="ld-time">00:00</div>
+        <div class="lock-d-date" id="ld-date">Loading...</div>
+        <div class="lock-d-user">
+            <div class="lock-d-avatar mt-10"><img src="alex.png" width="120"> </div>
+            <div class="lock-d-name">Alex M. Ariyo</div>
+            <div class="lock-d-sub">Technical Leader · Software Architect</div>
+        </div>
+        <button class="lock-d-btn" onclick="unlockDesktop()">
+            <i class="fa-solid fa-lock-open" style="margin-right:8px;"></i> Click to Enter Portfolio
+        </button>
+        <div class="lock-d-hint">No password required, just click</div>
+    </div>
+    <!-- ════════════════════════════════════
+     PHONE LOCK SCREEN
+════════════════════════════════════ -->
+    <div class="lock-phone" id="lock-phone" style="display:none;">
+        <div class="lock-p-bg"></div>
+        <div class="lock-p-notch"></div>
+        <div class="lock-p-statusbar">
+            <span id="lp-time">00:00</span>
+            <div class="sr">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+        <div class="lock-p-time" id="lp-bigtime">00:00</div>
+        <div class="lock-p-date" id="lp-date">Loading...</div>
+        <div class="lock-p-avatar">A</div>
+        <div class="lock-p-name">Alex M. Ariyo</div>
+        <div class="lock-p-sub">Technical Leader · CTO</div>
+        <div class="lock-p-bottom">
+            <button class="lock-p-swipe" onclick="unlockPhone()">
+                <i class="fa-solid fa-arrow-up"></i> Tap to Unlock
+            </button>
+            <div class="lock-p-hint">NO PASSWORD NEEDED</div>
+        </div>
+    </div>
+    <!-- ════════════════════════════════════
+     PROJECT MODAL
+════════════════════════════════════ -->
+    <div class="modal-ov" id="proj-modal" onclick="handleModalBg(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modal-img-area"></div>
+            <div class="modal-body">
+                <div class="modal-title" id="modal-title"></div>
+                <div class="modal-role" id="modal-role"></div>
+                <div class="modal-desc" id="modal-desc"></div>
+                <div class="tags" id="modal-tags"></div>
+                <div id="modal-link-area" style="margin-top:6px;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ════════════════════════════════════
+     GALLERY LIGHTBOX
+════════════════════════════════════ -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="lightbox-inner">
+            <div class="lightbox-img" id="lb-img"></div>
+            <div class="lightbox-cap" id="lb-cap"></div>
+        </div>
+    </div>
+    <!-- ════════════════════════════════════
+     DESKTOP SHELL
+════════════════════════════════════ -->
+    <div class="desktop-shell" id="desktop-shell" style="display:none;">
+        <!-- Top bar -->
+        <div class="os-topbar">
+            <div class="tb-left">
+                <span class="tb-apple"><i class="fa-solid fa-terminal"></i> Techuncle</span>
+                <span class="tb-menu-item">File</span>
+                <span class="tb-menu-item">View</span>
+                <span class="tb-menu-item">Portfolio</span>
+                <span class="tb-menu-item">Blog</span>
+                <span class="tb-menu-item">Contact</span>
+            </div>
+            <div class="tb-right">
+                <div class="theme-sw">
+                    <button class="tbtn" id="tb-light" title="Light" onclick="setTheme('light')"><i class="fa-solid fa-sun"></i></button>
+                    <button class="tbtn" id="tb-dark" title="Dark" onclick="setTheme('dark')"><i class="fa-solid fa-moon"></i></button>
+                    <button class="tbtn" id="tb-system" title="System" onclick="setTheme('system')"><i class="fa-solid fa-display"></i></button>
+                </div>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+                <span class="os-clock" id="os-clock">00:00</span>
+                <i class="fa-solid fa-lock lock-trigger" title="Lock screen" onclick="lockDesktop()"></i>
+            </div>
+        </div>
+        <!-- Workspace -->
+        <div class="os-workspace">
+            <!-- Sidebar -->
+            <div class="os-sidebar">
+                <div class="sb-header">
+                    <div class="sb-prof-wrap">
+                        <img class="sb-prof-img" src="https://avatars.githubusercontent.com/u/25614557?v=4" onerror="this.style.display='none';document.getElementById('sb-fb').style.display='flex';" alt="Alex" />
+                        <div class="sb-prof-fb" id="sb-fb" style="display:none;">A</div>
+                        <div class="sb-status"></div>
+                    </div>
+                    <div class="sb-name">Alex M. Ariyo</div>
+                    <div class="sb-role-text">Technical Leader · CTO</div>
+                </div>
+                <div class="sb-scroll">
+                    <div class="sb-label">Main</div>
+                    <div class="sb-item" onclick="sp(this,'about')"><i class="fa-solid fa-user"></i> About Me</div>
+                    <div class="sb-item" onclick="sp(this,'experience')"><i class="fa-solid fa-briefcase"></i> Experience</div>
+                    <div class="sb-item" onclick="sp(this,'projects')"><i class="fa-solid fa-layer-group"></i> Projects</div>
+                    <div class="sb-item" onclick="sp(this,'skills')"><i class="fa-solid fa-bolt"></i> Skills</div>
+                    <div class="sb-item" onclick="sp(this,'certs')"><i class="fa-solid fa-certificate"></i> Certifications</div>
+                    <div class="sb-item" onclick="sp(this,'education')"><i class="fa-solid fa-graduation-cap"></i> Education</div>
+                    <div class="sb-div"></div>
+                    <div class="sb-label">Content</div>
+                    <div class="sb-item" onclick="sp(this,'blog')"><i class="fa-solid fa-newspaper"></i> Blog</div>
+                    <div class="sb-item" onclick="sp(this,'gallery')"><i class="fa-solid fa-images"></i> Gallery</div>
+                    <div class="sb-div"></div>
+                    <div class="sb-label">More</div>
+                    <div class="sb-item" onclick="sp(this,'games')">
+                        <i class="fa-solid fa-gamepad"></i> Games
+                        <span style="font-size:9px;background:rgba(239,68,68,.15);color:#ef4444;padding:2px 7px;border-radius:10px;margin-left:auto;">Soon</span>
+                    </div>
+                    <div class="sb-div"></div>
+                    <div class="sb-label">Connect</div>
+                    <div class="sb-item" onclick="window.open('mailto:lxndrbrain@gmail.com')"><i class="fa-solid fa-envelope"></i> Email Me</div>
+                    <div class="sb-item" onclick="window.open('https://wa.me/2348142256444','_blank')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</div>
+                    <div class="sb-item" onclick="window.open('https://github.com/alexariyo','_blank')"><i class="fa-brands fa-github"></i> GitHub</div>
+                    <div class="sb-item" onclick="window.open('https://linkedin.com/in/ariyo-ai','_blank')"><i class="fa-brands fa-linkedin"></i> LinkedIn</div>
+                </div>
+                <div class="sb-bottom">
+                    <a class="cv-btn" href="Alex Ariyo Curriculum Vitae 2026.docx" download="Alex_M_Ariyo_CV.docx" style="width:100%;justify-content:center;">
+                        <i class="fa-solid fa-download"></i> Download CV
+                    </a>
+                </div>
+            </div>
+            <!-- Main window -->
+            <div class="os-main">
+                <div class="win-chrome">
+                    <div class="win-dots">
+                        <span class="dot-r"></span>
+                        <span class="dot-y"></span>
+                        <span class="dot-g"></span>
+                    </div>
+                    <div class="win-title" id="win-title">About Me — Techuncle</div>
+                    <div class="win-actions">
+                        <i class="fa-solid fa-minus"></i>
+                        <i class="fa-regular fa-square"></i>
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+                <div class="win-body" id="desktop-content">
+                    <!-- Populated by main.js on load -->
+                </div>
+            </div>
+        </div><!-- /os-workspace -->
+        <!-- Bottom taskbar -->
+        <div class="os-taskbar">
+            <div class="taskbar-app" title="About" onclick="sp(null,'about')"> <i class="fa-solid fa-user"></i></div>
+            <div class="taskbar-app" title="Experience" onclick="sp(null,'experience')"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="taskbar-app" title="Projects" onclick="sp(null,'projects')"> <i class="fa-solid fa-layer-group"></i></div>
+            <div class="taskbar-app" title="Blog" onclick="sp(null,'blog')"> <i class="fa-solid fa-newspaper"></i></div>
+            <div class="taskbar-app" title="Gallery" onclick="sp(null,'gallery')"> <i class="fa-solid fa-images"></i></div>
+            <div class="taskbar-sep"></div>
+            <div class="taskbar-app" title="Skills" onclick="sp(null,'skills')"> <i class="fa-solid fa-bolt"></i></div>
+            <div class="taskbar-app" title="Certs" onclick="sp(null,'certs')"> <i class="fa-solid fa-certificate"></i></div>
+            <div class="taskbar-app" title="Education" onclick="sp(null,'education')"> <i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="taskbar-sep"></div>
+            <div class="taskbar-app" title="WhatsApp" onclick="window.open('https://wa.me/2348142256444','_blank')"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="taskbar-app" title="GitHub" onclick="window.open('https://github.com/alexariyo','_blank')"><i class="fa-brands fa-github"></i></div>
+            <div class="taskbar-app" title="Games" onclick="sp(null,'games')"> <i class="fa-solid fa-gamepad"></i></div>
+            <div class="taskbar-sep"></div>
+            <div class="taskbar-app" title="Lock Screen" onclick="lockDesktop()"> <i class="fa-solid fa-lock"></i></div>
+        </div>
+    </div><!-- /desktop-shell -->
+    <!-- ════════════════════════════════════
+     PHONE SHELL
+════════════════════════════════════ -->
+    <div class="phone-shell" id="phone-shell" style="display:none;">
+        <div class="ph-frame">
+            <div class="ph-island">
+                <div class="ph-cam"></div>
+                <div class="ph-dot"></div>
+            </div>
+            <div class="ph-status">
+                <span id="phone-time">00:00</span>
+                <div class="sr">
+                    <i class="fa-solid fa-signal"></i>
+                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-battery-full"></i>
+                </div>
+            </div>
+            <div class="ph-screen" id="ph-home">
+                <!-- Header row -->
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:2px 4px 14px;">
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <div style="position:relative;">
+                            <img src="https://avatars.githubusercontent.com/u/25614557?v=4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:46px;height:46px;border-radius:14px;object-fit:cover;border:2px solid #2563eb;display:block;" alt="Alex" />
+                            <div style="display:none;width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#7c3aed);align-items:center;justify-content:center;font-family:var(--font-head);font-size:18px;font-weight:700;color:#fff;border:2px solid #2563eb;">A</div>
+                            <div style="position:absolute;bottom:1px;right:1px;width:11px;height:11px;border-radius:50%;background:#22c55e;border:2px solid #0d0d11;"></div>
+                        </div>
+                        <div>
+                            <div style="font-family:var(--font-head);font-size:18px;font-weight:700;color:#f0f0f5;line-height:1.1;">Techuncle</div>
+                            <div style="font-size:10px;color:#8888a0;">Tap an app to explore</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:5px;">
+                        <button id="ptb-light" onclick="setTheme('light')" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;color:#8888a0;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.06);transition:all .2s;"><i class="fa-solid fa-sun"></i></button>
+                        <button id="ptb-dark" onclick="setTheme('dark')" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;color:#8888a0;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.06);transition:all .2s;"><i class="fa-solid fa-moon"></i></button>
+                        <button id="ptb-system" onclick="setTheme('system')" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;color:#8888a0;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.06);transition:all .2s;"><i class="fa-solid fa-display"></i></button>
+                    </div>
+                </div>
+                <!-- App Grid -->
+                <div class="ph-grid">
+                    <div class="app-ic" onclick="oa('about')">
+                        <div class="aib ic-about"> <i class="fa-solid fa-user"></i></div> <span class="alb">About</span>
+                    </div>
+                    <div class="app-ic" onclick="oa('experience')">
+                        <div class="aib ic-exp"> <i class="fa-solid fa-briefcase"></i></div> <span class="alb">Experience</span>
+                    </div>
+                    <div class="app-ic" onclick="oa('projects')">
+                        <div class="aib ic-proj"> <i class="fa-solid fa-layer-group"></i></div> <span class="alb">Projects</span>
+                    </div>
+                    <div class="app-ic" onclick="oa('skills')">
+                        <div class="aib ic-skills"> <i class="fa-solid fa-bolt"></i></div> <span class="alb">Skills</span>
+                    </div>
+                    <div class="app-ic" onclick="oa('certs')">
+                        <div class="aib ic-cert"> <i class="fa-solid fa-certificate"></i></div> <span class="alb">Certs</span>
+                    </div>
+                    <div class="app-ic" onclick="oa('education')">
+                        <div class="aib ic-edu"> <i class="fa-solid fa-graduation-cap"></i></div><span class="alb">Education</span>
+                    </div>
+                    <div class="app-ic" onclick="oa('blog')">
+                        <div class="aib ic-blog"> <i class="fa-solid fa-newspaper"></i></div> <span class="alb">Blog</span>
+                    </div>
+                    <div class="app-ic" onclick="oa('gallery')">
+                        <div class="aib ic-gallery"><i class="fa-solid fa-images"></i></div> <span class="alb">Gallery</span>
+                    </div>
+                    <div class="app-ic" onclick="oa('contact')">
+                        <div class="aib ic-contact"><i class="fa-solid fa-address-card"></i></div> <span class="alb">Contact</span>
+                    </div>
+                    <div class="app-ic" onclick="oa('games')">
+                        <div class="aib ic-games"> <i class="fa-solid fa-gamepad"></i></div> <span class="alb">Games</span>
+                    </div>
+                    <div class="app-ic" onclick="window.open('https://github.com/alexariyo','_blank')">
+                        <div class="aib ic-github"><i class="fa-brands fa-github"></i></div><span class="alb">GitHub</span>
+                    </div>
+                </div>
+                <!-- Stats widget -->
+                <div style="margin-top:16px;background:rgba(37,99,235,.10);border:1px solid rgba(37,99,235,.22);border-radius:18px;padding:16px;">
+                    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4f8cff;margin-bottom:12px;">Quick Stats</div>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;">
+                        <div>
+                            <div style="font-family:var(--font-head);font-size:22px;font-weight:700;color:#f0f0f5;">12+</div>
+                            <div style="font-size:9px;color:#8888a0;">Years Exp</div>
+                        </div>
+                        <div>
+                            <div style="font-family:var(--font-head);font-size:22px;font-weight:700;color:#34d399;">700+</div>
+                            <div style="font-size:9px;color:#8888a0;">Students</div>
+                        </div>
+                        <div>
+                            <div style="font-family:var(--font-head);font-size:22px;font-weight:700;color:#a78bfa;">11k+</div>
+                            <div style="font-size:9px;color:#8888a0;">Users</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:14px;">
+                    <a class="cv-btn" href="Alex Ariyo Curriculum Vitae 2026.docx" download="Alex_M_Ariyo_CV.docx" style="width:100%;justify-content:center;">
+                        <i class="fa-solid fa-download"></i> Download CV
+                    </a>
+                </div>
+                <div style="margin-top:12px;text-align:center;">
+                    <button onclick="lockPhone()" style="background:none;border:1px solid rgba(255,255,255,.10);color:#8888a0;font-size:12px;padding:8px 20px;border-radius:20px;cursor:pointer;font-family:var(--font-body);display:inline-flex;align-items:center;gap:6px;">
+                        <i class="fa-solid fa-lock"></i> Lock Screen
+                    </button>
+                </div>
+            </div><!-- /ph-home -->
+            <!-- Phone App View -->
+            <div class="ph-app-view" id="ph-app-view">
+                <div class="ph-app-hdr">
+                    <div class="ph-back" onclick="closeApp()"><i class="fa-solid fa-chevron-left"></i> Back</div>
+                    <div class="ph-app-title" id="ph-app-title"></div>
+                </div>
+                <div class="ph-app-body" id="ph-app-body"></div>
+            </div>
+            <!-- Bottom nav -->
+            <div class="ph-nav">
+                <div class="nav-pill active" onclick="goHome()"><i class="fa-solid fa-house"></i><span>Home</span></div>
+                <div class="nav-pill" onclick="oa('experience')"><i class="fa-solid fa-briefcase"></i><span>Work</span></div>
+                <div class="nav-pill" onclick="oa('blog')"><i class="fa-solid fa-newspaper"></i><span>Blog</span></div>
+                <div class="nav-pill" onclick="oa('gallery')"><i class="fa-solid fa-images"></i><span>Gallery</span></div>
+                <div class="nav-pill" onclick="oa('contact')"><i class="fa-solid fa-envelope"></i><span>Contact</span></div>
+            </div>
+        </div><!-- /ph-frame -->
+    </div><!-- /phone-shell -->
+    <script src="main.js"></script>
+</body>
+
+</html>
