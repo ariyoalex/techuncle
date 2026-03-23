@@ -27,7 +27,7 @@ const BLOG = [{
 <h3>The Hosting Reality in Africa</h3>
 <p>Here in Nigeria, most clients are using shared hosting on cPanel. PHP runs natively everywhere. You do not have to fight infrastructure just to deploy.</p>
 <h3>It Scales When You Need It To</h3>
-<p>We ran the COFIE entrepreneurship portal on PHP — it onboarded 11,000+ applicants without falling over. Proper database indexing, caching, and connection pooling do more than the language choice itself.</p>
+<p>We ran the COFIE entrepreneurship portal on PHP  it onboarded 11,000+ applicants without falling over. Proper database indexing, caching, and connection pooling do more than the language choice itself.</p>
 <h3>The Real Point</h3>
 <p>Technology choice should serve the project, not the developer's ego. Use what solves the problem reliably. PHP solves a lot of problems, reliably, affordably, and fast. That is why it stays in my toolkit.</p>`
     },
@@ -83,7 +83,7 @@ const BLOG = [{
 <h3>What I Would Tell Younger Me</h3>
 <ul>
   <li>Build real things, not just tutorials.</li>
-  <li>Learn to communicate your work — writing and speaking matter as much as code.</li>
+  <li>Learn to communicate your work  writing and speaking matter as much as code.</li>
   <li>Your network in Nigeria is your biggest career accelerator. Protect it.</li>
   <li>Do not wait until you feel ready. You will never feel ready.</li>
 </ul>`
@@ -202,7 +202,7 @@ function initShells() {
 function initDesktop() {
     // Render about content immediately when shell becomes visible
     document.getElementById('desktop-content').innerHTML = buildAbout(true);
-    document.getElementById('win-title').textContent = 'About Me — Techuncle';
+    document.getElementById('win-title').textContent = 'About Me  Techuncle';
     const firstItem = document.querySelector('.sb-item');
     if (firstItem) firstItem.classList.add('active');
 }
@@ -614,7 +614,7 @@ const PANELS = {
 function sp(el, key) {
     document.querySelectorAll('.sb-item').forEach(d => d.classList.remove('active'));
     if (el) el.classList.add('active');
-    document.getElementById('win-title').textContent = PANELS[key].title + ' — Techuncle';
+    document.getElementById('win-title').textContent = PANELS[key].title + '  Techuncle';
     document.getElementById('desktop-content').innerHTML = PANELS[key].d();
     document.querySelectorAll('.taskbar-app').forEach(t => t.classList.remove('ta-active'));
 }
@@ -720,7 +720,7 @@ tick();
 setInterval(tick, 10000);
 
 /* =========================================
-   INIT — runs on page load
+   INIT  runs on page load
 ========================================= */
 const savedTheme = localStorage.getItem('techuncle-theme') || 'light';
 setTheme(savedTheme);
